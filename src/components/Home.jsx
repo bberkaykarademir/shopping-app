@@ -4,10 +4,14 @@ import Navbar from "./Navbar";
 import Products from "./Products";
 import Hero from "./Hero";
 
-const Home = () => {
+const Home = ({ activeLink, setActiveLink, handleClick }) => {
   return (
     <>
-      <Navbar />
+      <Navbar
+        activeLink={activeLink}
+        setActiveLink={setActiveLink}
+        handleClick={handleClick}
+      />
       <Hero />
       <Products />
       <Footer />

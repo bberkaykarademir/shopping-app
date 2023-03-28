@@ -21,7 +21,7 @@ function Products() {
   }, []);
 
   return (
-    <div className="products">
+    <div className="products" id="products">
       {products.map((product) => (
         <div className="product" key={product.id}>
           <img src={product.image} alt={product.title} />

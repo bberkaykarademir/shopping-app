@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -18,6 +19,10 @@ body {
   width: 100%;
 }
 
+.logo h2 {
+  cursor: pointer;
+}
+
 .links a {
   margin: 33px;
 }
@@ -30,12 +35,12 @@ body {
   font-size: 17px;
 }
 
-.navbar a:hover {
+.navbar .links a:hover {
   background-color: #ddd;
   color: black;
 }
 
-.navbar a.active {
+.navbar .links a.active {
   border-bottom: 1px solid red;
   padding-bottom: 2px;
 }
@@ -89,7 +94,7 @@ body {
   justify-content: space-between;
 }
 
-.product {
+#products .product {
   width: 30%;
   margin-bottom: 30px;
   padding: 20px;
@@ -98,7 +103,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.product img {
+#products .product img {
   display: block;
   margin: 0 auto;
   width: 80%;
@@ -174,4 +179,163 @@ footer {
   }
 
   /* make burger navbar */
+}
+
+.about {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.about-text {
+  width: 550px;
+}
+
+.about h1 {
+  color: rgb(58, 93, 116);
+}
+
+.about p {
+  font-size: 20px;
+  line-height: 27px;
+  margin: 30px 0px;
+}
+
+.about button {
+  padding: 11px;
+  background-color: rgb(58, 93, 116);
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.about button:hover {
+  opacity: 0.8;
+}
+
+.about img {
+  width: 600px;
+  height: 300px;
+}
+
+textarea {
+  resize: none;
+  outline: none;
+  width: 100%;
+  font-size: 18px;
+}
+
+input {
+  outline: none;
+  padding: 5px;
+  width: 100%;
+  font-size: 18px;
+}
+
+.contact {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 150px;
+}
+
+.contact img {
+  width: 400px;
+  height: 400px;
+}
+
+.contact-text {
+  width: 666px;
+}
+
+.contact p {
+  margin: 11px 0px;
+}
+
+.contact h1 {
+  color: rgb(58, 93, 116);
+}
+
+.contact button {
+  padding: 11px;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgb(58, 93, 116);
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 11px;
+}
+
+.contact button:hover {
+  opacity: 0.8;
+}
+
+.cart {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 100px;
+}
+
+.cart .product {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 300px;
+}
+
+.cart .product img {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  height: 10vh;
+  object-fit: contain;
+}
+
+.cart-summary {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.cart-summary button {
+  padding: 10px;
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 50px;
+}
+
+.delete {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  font-size: 20px;
+  cursor: pointer;
 }

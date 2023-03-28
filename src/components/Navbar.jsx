@@ -1,52 +1,60 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import { MdAccountCircle } from "react-icons/md";
+import { useLocation } from "react-router-dom";
 
-const Navbar = () => {
-  const [activeLink, setActiveLink] = useState(0);
-
-  const handleClick = (index) => {
-    setActiveLink(index);
-  };
+const Navbar = ({ activeLink, setActiveLink, handleClick }) => {
+  let location = useLocation();
   return (
     <div className="navbar">
       <div className="logo">
         <h2>Fashion</h2>
       </div>
       <div className="links">
-        <a
+        <Link
+          to="/"
           className={activeLink === 0 ? "active" : ""}
           onClick={() => handleClick(0)}
-          href="#"
         >
           Home
-        </a>
-        <a
-          className={activeLink === 1 ? "active" : ""}
-          onClick={() => handleClick(1)}
-          href="#"
-        >
-          Products
-        </a>
-        <a
+        </Link>
+
+        {location.pathname === "/" ? (
+          <a href="#products">Products</a>
+        ) : (
+          <Link
+            to="/products"
+            className={activeLink === 1 ? "active" : ""}
+            onClick={() => handleClick(1)}
+          >
+            Products
+          </Link>
+        )}
+
+        <Link
+          to="/about"
           className={activeLink === 2 ? "active" : ""}
           onClick={() => handleClick(2)}
-          href="#"
         >
           About
-        </a>
-        <a
+        </Link>
+
+        <Link
+          to="/contact"
           className={activeLink === 3 ? "active" : ""}
           onClick={() => handleClick(3)}
-          href="#"
         >
           Contact
-        </a>
+        </Link>
       </div>
       <div className="navbar-right">
-        <i className="navbarIcon" href="#">
-          <BsCart4 />
-        </i>
+        <Link to="/cart">
+          <i className="navbarIcon">
+            <BsCart4 />
+          </i>
+        </Link>
+
         <i className="navbarIcon" href="#">
           <MdAccountCircle />
         </i>
