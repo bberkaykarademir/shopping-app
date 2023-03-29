@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Products from "./Products";
 import Hero from "./Hero";
+import ProductPage from "./ProductPage";
 
 const Home = ({ activeLink, setActiveLink, handleClick }) => {
   return (
