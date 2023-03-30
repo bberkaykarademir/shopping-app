@@ -15,6 +15,8 @@ import Product7 from "./components/SingleProduct/Product7";
 import Product8 from "./components/SingleProduct/Product8";
 import Product9 from "./components/SingleProduct/Product9";
 import Product10 from "./components/SingleProduct/Product10";
+import SignIn from "./components/Account/SignIn";
+import CreateAcc from "./components/Account/CreateAcc";
 
 const App = () => {
   const [activeLink, setActiveLink] = useState(0);
@@ -22,6 +24,7 @@ const App = () => {
   const handleClick = (index) => {
     setActiveLink(index);
   };
+  const [productBasket, setProductBasket] = useState([]);
   return (
     <Routes>
       <Route
@@ -71,6 +74,8 @@ const App = () => {
             activeLink={activeLink}
             setActiveLink={setActiveLink}
             handleClick={handleClick}
+            setProductBasket={setProductBasket}
+            productBasket={productBasket}
           />
         }
       />
@@ -81,6 +86,8 @@ const App = () => {
             activeLink={activeLink}
             setActiveLink={setActiveLink}
             handleClick={handleClick}
+            setProductBasket={setProductBasket}
+            productBasket={productBasket}
           />
         }
       />
@@ -91,6 +98,8 @@ const App = () => {
             activeLink={activeLink}
             setActiveLink={setActiveLink}
             handleClick={handleClick}
+            setProductBasket={setProductBasket}
+            productBasket={productBasket}
           />
         }
       />
@@ -101,6 +110,8 @@ const App = () => {
             activeLink={activeLink}
             setActiveLink={setActiveLink}
             handleClick={handleClick}
+            setProductBasket={setProductBasket}
+            productBasket={productBasket}
           />
         }
       />
@@ -111,63 +122,99 @@ const App = () => {
             activeLink={activeLink}
             setActiveLink={setActiveLink}
             handleClick={handleClick}
+            setProductBasket={setProductBasket}
+            productBasket={productBasket}
           />
         }
       />
       <Route
-        path="/product5"
+        path="/product15"
         element={
           <Product5
             activeLink={activeLink}
             setActiveLink={setActiveLink}
             handleClick={handleClick}
+            setProductBasket={setProductBasket}
+            productBasket={productBasket}
           />
         }
       />
       <Route
-        path="/product6"
+        path="/product16"
         element={
           <Product6
             activeLink={activeLink}
             setActiveLink={setActiveLink}
             handleClick={handleClick}
+            setProductBasket={setProductBasket}
+            productBasket={productBasket}
           />
         }
       />
       <Route
-        path="/product7"
+        path="/product17"
         element={
           <Product7
             activeLink={activeLink}
             setActiveLink={setActiveLink}
             handleClick={handleClick}
+            setProductBasket={setProductBasket}
+            productBasket={productBasket}
           />
         }
       />
       <Route
-        path="/product8"
+        path="/product18"
         element={
           <Product8
             activeLink={activeLink}
             setActiveLink={setActiveLink}
             handleClick={handleClick}
+            setProductBasket={setProductBasket}
+            productBasket={productBasket}
           />
         }
       />
       <Route
-        path="/product9"
+        path="/product19"
         element={
           <Product9
             activeLink={activeLink}
             setActiveLink={setActiveLink}
             handleClick={handleClick}
+            setProductBasket={setProductBasket}
+            productBasket={productBasket}
           />
         }
       />
       <Route
-        path="/product10"
+        path="/product20"
         element={
           <Product10
+            activeLink={activeLink}
+            setActiveLink={setActiveLink}
+            handleClick={handleClick}
+            setProductBasket={setProductBasket}
+            productBasket={productBasket}
+          />
+        }
+      />
+
+      <Route
+        path="/SignIn"
+        element={
+          <SignIn
+            activeLink={activeLink}
+            setActiveLink={setActiveLink}
+            handleClick={handleClick}
+          />
+        }
+        // <>{user ? <Navigate to="/Account" /> : <SignIn />}</>
+      />
+      <Route
+        path="/CreateAcc"
+        element={
+          <CreateAcc
             activeLink={activeLink}
             setActiveLink={setActiveLink}
             handleClick={handleClick}

@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar";
 import ProductPage from "../ProductPage";
 
-const Product6 = ({ activeLink, setActiveLink, handleClick }) => {
+const Product6 = ({
+  activeLink,
+  setActiveLink,
+  handleClick,
+  setProductBasket,
+  productBasket,
+}) => {
   const [singleProduct, setSingleProduct] = useState({
     category: "",
     name: "",
@@ -27,6 +33,7 @@ const Product6 = ({ activeLink, setActiveLink, handleClick }) => {
       price: data.price,
       description: data.description,
       image: data.image,
+      id: data.id,
     });
   };
   // Fetch the product data on component mount
@@ -44,6 +51,8 @@ const Product6 = ({ activeLink, setActiveLink, handleClick }) => {
       <ProductPage
         singleProduct={singleProduct}
         setSingleProduct={setSingleProduct}
+        setProductBasket={setProductBasket}
+        productBasket={productBasket}
       />
     </>
   );

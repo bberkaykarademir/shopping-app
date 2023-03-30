@@ -54,10 +54,11 @@ const Navbar = ({ activeLink, setActiveLink, handleClick }) => {
             <BsCart4 />
           </i>
         </Link>
-
-        <i className="navbarIcon" href="#">
-          <MdAccountCircle />
-        </i>
+        <Link to="/signIn">
+          <i className="navbarIcon" href="#">
+            <MdAccountCircle />
+          </i>
+        </Link>
       </div>
     </div>
   );
