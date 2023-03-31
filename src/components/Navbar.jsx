@@ -55,7 +55,7 @@ const Navbar = ({ activeLink, setActiveLink, handleClick }) => {
           </i>
         </Link>
         <Link to="/signIn">
-          <i className="navbarIcon" href="#">
+          <i className="navbarIcon">
             <MdAccountCircle />
           </i>
         </Link>

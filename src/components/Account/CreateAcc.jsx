@@ -19,6 +19,9 @@ const CreateAcc = ({ activeLink, setActiveLink, handleClick }) => {
       !fName && alert("Please Enter Your Name!");
     }
     const user = await register(email, password);
+    await update({
+      displayName: fName,
+    });
     navigate("/SignIn");
   };
   return (
@@ -58,6 +61,8 @@ const CreateAcc = ({ activeLink, setActiveLink, handleClick }) => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            pattern=".{6,}"
+            placeholder="6 or more Character"
           />
 
           <button type="submit">Create Account</button>

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { AiOutlineClose } from "react-icons/ai";
+import { logout as logoutHandler } from "./store/auth";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Cart = ({
   activeLink,
@@ -8,6 +12,7 @@ const Cart = ({
   handleClick,
   setProductBasket,
   productBasket,
+  user,
 }) => {
   useEffect(() => {
     setActiveLink(null);
@@ -24,6 +29,12 @@ const Cart = ({
     0
   );
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const signOut = () => {
+    dispatch(logoutHandler(user));
+    navigate("/");
+  };
   return (
     <>
       <Navbar
@@ -45,8 +56,19 @@ const Cart = ({
           ))}
         </div>
         <div className="cart-summary">
+          <p>{user.displayName}</p>
           <h3 className="total-price">Total Price: ${totalPrice.toFixed(2)}</h3>
-          <button className="buy-now-btn">Buy Now</button>
+          {totalPrice != 0 && (
+            <Link to="/Checkout">
+              <button className="buy-now-btn">Buy Now</button>
+            </Link>
+          )}
+
+          {user && (
+            <button className="signout-btn" onClick={signOut}>
+              Sign Out
+            </button>
+          )}
         </div>
       </div>
     </>

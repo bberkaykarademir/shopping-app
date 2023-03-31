@@ -171,9 +171,22 @@ footer {
   margin-bottom: 10px;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1150px) {
   .navbar {
-    display: none;
+    flex-direction: column;
+  }
+  .links {
+    margin: 11px 0px;
+  }
+  .links a {
+    margin: 9px;
+  }
+  .navbar-right i {
+    margin: 3px;
+    cursor: pointer;
+  }
+  .navbar a {
+    padding: 2px 9px;
   }
   .slider {
     display: none;
@@ -181,8 +194,6 @@ footer {
   .hero .title {
     text-align: center;
   }
-
-  /* make burger navbar */
 }
 
 .about {
@@ -324,7 +335,7 @@ input {
   height: 300px;
 }
 
-.cart-summary button {
+.cart-summary .buy-now-btn {
   padding: 10px;
   width: 200px;
   background-color: #333;
@@ -334,6 +345,18 @@ input {
   font-size: 16px;
   cursor: pointer;
   margin-top: 50px;
+}
+
+.cart-summary .signout-btn {
+  background-color: red;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 11px;
+  padding: 10px;
+  width: 100px;
+  margin-top: 33px;
+  cursor: pointer;
 }
 
 .cart .delete {
@@ -462,4 +485,27 @@ input {
   border-radius: 25px;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.payment input {
+  width: 300px;
+  margin: 11px 0px;
+}
+
+.payment .buy-button {
+  background-color: blue;
+  border: none;
+  border-radius: 6px;
+  width: 150px;
+  color: white;
+  font-size: 18px;
+  padding: 6px;
 }

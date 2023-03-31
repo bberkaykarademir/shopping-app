@@ -17,6 +17,8 @@ import Product9 from "./components/SingleProduct/Product9";
 import Product10 from "./components/SingleProduct/Product10";
 import SignIn from "./components/Account/SignIn";
 import CreateAcc from "./components/Account/CreateAcc";
+import { useSelector } from "react-redux";
+import Checkout from "./components/Checkout";
 
 const App = () => {
   const [activeLink, setActiveLink] = useState(0);
@@ -25,6 +27,7 @@ const App = () => {
     setActiveLink(index);
   };
   const [productBasket, setProductBasket] = useState([]);
+  const { user } = useSelector((state) => state.auth);
   return (
     <Routes>
       <Route
@@ -76,6 +79,7 @@ const App = () => {
             handleClick={handleClick}
             setProductBasket={setProductBasket}
             productBasket={productBasket}
+            user={user}
           />
         }
       />
@@ -203,14 +207,36 @@ const App = () => {
       <Route
         path="/SignIn"
         element={
-          <SignIn
-            activeLink={activeLink}
-            setActiveLink={setActiveLink}
-            handleClick={handleClick}
-          />
+          <>
+            {user ? (
+              <Navigate to="/cart" />
+            ) : (
+              <SignIn
+                activeLink={activeLink}
+                setActiveLink={setActiveLink}
+                handleClick={handleClick}
+              />
+            )}
+          </>
         }
-        // <>{user ? <Navigate to="/Account" /> : <SignIn />}</>
       />
+      <Route
+        path="/Checkout"
+        element={
+          <>
+            {user ? (
+              <Checkout
+                activeLink={activeLink}
+                setActiveLink={setActiveLink}
+                handleClick={handleClick}
+              />
+            ) : (
+              <Navigate to="/SignIn" />
+            )}
+          </>
+        }
+      />
+
       <Route
         path="/CreateAcc"
         element={
