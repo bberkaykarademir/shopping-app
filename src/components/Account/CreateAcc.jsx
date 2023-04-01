@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar";
 import { Link, useNavigate } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { register, update } from "../../firebase";
 
 const CreateAcc = ({ activeLink, setActiveLink, handleClick }) => {
@@ -16,7 +17,13 @@ const CreateAcc = ({ activeLink, setActiveLink, handleClick }) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     {
-      !fName && alert("Please Enter Your Name!");
+      !fName && toast("Please Enter Your Name!");
+    }
+    {
+      !email && toast("Please Enter Your Email!");
+    }
+    {
+      !password && toast("Please Enter Your Password!");
     }
     const user = await register(email, password);
     await update({
@@ -39,6 +46,8 @@ const CreateAcc = ({ activeLink, setActiveLink, handleClick }) => {
             type="text"
             id="fname"
             value={fName}
+            maxLength={15}
+            placeholder="15 or less character"
             onChange={(e) => setFName(e.target.value)}
           />
           <label htmlFor="text">Last Name</label>
@@ -61,8 +70,8 @@ const CreateAcc = ({ activeLink, setActiveLink, handleClick }) => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            pattern=".{6,}"
-            placeholder="6 or more Character"
+            minLength={6}
+            placeholder="6 or more character"
           />
 
           <button type="submit">Create Account</button>
@@ -77,6 +86,7 @@ const CreateAcc = ({ activeLink, setActiveLink, handleClick }) => {
           <button className="create-button">Sign In</button>
         </Link>
       </div>
+      <ToastContainer />
     </div>
   );
 };

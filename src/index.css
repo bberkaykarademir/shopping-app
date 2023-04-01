@@ -5,9 +5,15 @@
   scroll-behavior: smooth;
 }
 
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -16,7 +22,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 11px 130px;
-  width: 100%;
 }
 
 .logo h2 {
@@ -115,6 +120,8 @@ body {
   margin-top: 20px;
   text-align: center;
   font-size: small;
+  align-self: center;
+  align-items: center;
 }
 
 .product a {
@@ -130,8 +137,8 @@ body {
 }
 
 .products button {
-  width: 80%;
-  height: 40px;
+  min-width: 80%;
+  min-height: 40px;
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -140,6 +147,7 @@ body {
   margin-top: 10px;
   margin: 11px auto;
   display: block;
+  padding: 5px;
 }
 
 .products button:hover {
@@ -169,31 +177,6 @@ footer {
 
 .footer-right ul li {
   margin-bottom: 10px;
-}
-
-@media screen and (max-width: 1150px) {
-  .navbar {
-    flex-direction: column;
-  }
-  .links {
-    margin: 11px 0px;
-  }
-  .links a {
-    margin: 9px;
-  }
-  .navbar-right i {
-    margin: 3px;
-    cursor: pointer;
-  }
-  .navbar a {
-    padding: 2px 9px;
-  }
-  .slider {
-    display: none;
-  }
-  .hero .title {
-    text-align: center;
-  }
 }
 
 .about {
@@ -508,4 +491,91 @@ input {
   color: white;
   font-size: 18px;
   padding: 6px;
+}
+
+@media screen and (max-width: 1150px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .links {
+    margin: 11px 0px;
+  }
+  .links a {
+    margin: 9px;
+  }
+  .navbar-right i {
+    margin: 3px;
+    cursor: pointer;
+  }
+  .navbar a {
+    padding: 2px 9px;
+  }
+  .slider {
+    display: none;
+  }
+  .hero .title {
+    text-align: center;
+    margin: 0px;
+  }
+  #products .product h4 {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about img,
+  .contact img {
+    display: none;
+  }
+  .about,
+  .contact {
+    margin-top: 33px;
+    padding: 19px;
+  }
+  .about h1,
+  .contact h1 {
+    text-align: center;
+  }
+  .contact input {
+    margin: 11px 0px;
+  }
+  .product-page {
+    flex-direction: column;
+    margin-top: 11px;
+    padding: 19px;
+  }
+  .product-page img {
+    width: 200px;
+    height: 200px;
+  }
+  .product-page .singleProduct-text {
+    width: 300px;
+    text-align: center;
+    padding: 33px;
+  }
+  .product-page .singleProduct-text button {
+    margin: auto;
+    margin-top: 11px;
+  }
+  .cart {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 280px) {
+  .links {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-left,
+  .footer-right {
+    width: 260px;
+  }
+
+  .product h4 {
+    font-size: 9px;
+  }
+
+  .payment input {
+    width: 230px;
+  }
 }

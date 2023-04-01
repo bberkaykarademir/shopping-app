@@ -4,6 +4,8 @@ import Navbar from "../Navbar";
 import { login } from "../../firebase";
 import { login as loginHandler } from "../store/auth";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = ({ activeLink, setActiveLink, handleClick }) => {
   useEffect(() => {
@@ -15,10 +17,15 @@ const SignIn = ({ activeLink, setActiveLink, handleClick }) => {
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await login(email, password);
-    if (user) {
-      dispatch(loginHandler(user));
-      navigate("/cart");
+
+    try {
+      const user = await login(email, password);
+      if (user) {
+        dispatch(loginHandler(user));
+        navigate("/cart");
+      }
+    } catch (error) {
+      toast("email or password is incorrect");
     }
   };
 
@@ -57,6 +64,7 @@ const SignIn = ({ activeLink, setActiveLink, handleClick }) => {
           <button className="create-button">Create Account</button>
         </Link>
       </div>
+      <ToastContainer />
     </div>
   );
 };
