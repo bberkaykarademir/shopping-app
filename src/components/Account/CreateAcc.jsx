@@ -3,7 +3,7 @@ import Navbar from "../Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { register, update } from "../../firebase";
+import { createDocument, register, update } from "../../firebase";
 
 const CreateAcc = ({ activeLink, setActiveLink, handleClick }) => {
   useEffect(() => {
@@ -26,9 +26,11 @@ const CreateAcc = ({ activeLink, setActiveLink, handleClick }) => {
       !password && toast("Please Enter Your Password!");
     }
     const user = await register(email, password);
+
     await update({
       displayName: fName,
     });
+    createDocument(user.email);
     navigate("/SignIn");
   };
   return (

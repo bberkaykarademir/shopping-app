@@ -20,6 +20,7 @@ import CreateAcc from "./components/Account/CreateAcc";
 import { useSelector } from "react-redux";
 import Checkout from "./components/Checkout";
 
+
 const App = () => {
   const [activeLink, setActiveLink] = useState(0);
 

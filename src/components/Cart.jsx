@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { AiOutlineClose } from "react-icons/ai";
 import { logout as logoutHandler } from "./store/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { cartProducts, getProducts, updateProducts } from "../firebase";
 
 const Cart = ({
   activeLink,
@@ -23,11 +24,17 @@ const Cart = ({
       prevBasket.filter((product) => product.id !== productId)
     );
   };
-
-  const totalPrice = productBasket.reduce(
-    (accumulator, currentProduct) => accumulator + currentProduct.price,
-    0
-  );
+  //user varken firebase için de delete işlemi ayarla
+  const { firebaseCart } = useSelector((state) => state.firebaseCart);
+  const totalPrice = user
+    ? Object.values(firebaseCart).reduce(
+        (accumulator, currentProduct) => accumulator + currentProduct.price,
+        0
+      )
+    : productBasket.reduce(
+        (accumulator, currentProduct) => accumulator + currentProduct.price,
+        0
+      );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -35,6 +42,11 @@ const Cart = ({
     dispatch(logoutHandler(user));
     navigate("/");
   };
+
+  useEffect(() => {
+    user && getProducts(user.email);
+  }, []);
+
   return (
     <>
       <Navbar
@@ -44,16 +56,33 @@ const Cart = ({
       />
       <div className="cart">
         <div className="cart-products">
-          {productBasket.map((product) => (
-            <div className="product" key={product.id}>
-              <img src={product.image} alt={product.title} />
-              <h4>{product.title}</h4>
-              <p>{product.price} USD</p>
-              <i className="delete" onClick={() => handleDelete(product.id)}>
-                <AiOutlineClose />
-              </i>
-            </div>
-          ))}
+          {user
+            ? Object.values(firebaseCart).map((product) => (
+                <div className="product" key={product.id}>
+                  <img src={product.image} alt={product.title} />
+                  <h4>{product.title}</h4>
+                  <p>{product.price} USD</p>
+                  <i
+                    className="delete"
+                    onClick={() => handleDelete(product.id)}
+                  >
+                    <AiOutlineClose />
+                  </i>
+                </div>
+              ))
+            : productBasket.map((product) => (
+                <div className="product" key={product.id}>
+                  <img src={product.image} alt={product.title} />
+                  <h4>{product.title}</h4>
+                  <p>{product.price} USD</p>
+                  <i
+                    className="delete"
+                    onClick={() => handleDelete(product.id)}
+                  >
+                    <AiOutlineClose />
+                  </i>
+                </div>
+              ))}
         </div>
         <div className="cart-summary">
           <p>{user.displayName}</p>

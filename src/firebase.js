@@ -1,5 +1,14 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  onSnapshot,
+  doc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -7,6 +16,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import store from "./components/store";
+import { setFirebaseCart } from "./components/store/firebaseCart";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAFuLAdV8ZLRV52uyoG1tApm5zId3Oj50",
@@ -39,6 +50,38 @@ export const logout = async () => {
 export const update = async (data) => {
   await updateProfile(auth.currentUser, data);
   return true;
+};
+
+export const addProduct = async (data) => {
+  const result = await addDoc(collection(db, "cart"), data);
+  console.log(result);
+};
+
+export const updateProducts = async (document, data) => {
+  const docRef = doc(db, "cart", document);
+  const res = await updateDoc(docRef, data);
+  console.log(res);
+};
+
+// onSnapshot(collection(db, "cart"), (doc) => {
+//   doc.docs.map((products) => {
+//     console.log(products.data());
+//   });
+//   console.log("Current data: ", doc.docs[3]);
+// });
+
+export var cartProducts;
+
+export const getProducts = (document) => {
+  onSnapshot(doc(db, "cart", document), (doc) => {
+    // cartProducts = doc.data();
+    // console.log("current data: ", cartProducts);
+    store.dispatch(setFirebaseCart(doc.data()));
+  });
+};
+
+export const createDocument = async (user) => {
+  await setDoc(doc(db, "cart", user), {});
 };
 
 export default app;
