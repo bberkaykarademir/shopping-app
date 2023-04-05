@@ -8,6 +8,7 @@ import {
   doc,
   setDoc,
   updateDoc,
+  deleteField,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -60,7 +61,7 @@ export const addProduct = async (data) => {
 export const updateProducts = async (document, data) => {
   const docRef = doc(db, "cart", document);
   const res = await updateDoc(docRef, data);
-  console.log(res);
+  // console.log(res);
 };
 
 // onSnapshot(collection(db, "cart"), (doc) => {
@@ -74,10 +75,18 @@ export var cartProducts;
 
 export const getProducts = (document) => {
   onSnapshot(doc(db, "cart", document), (doc) => {
-    // cartProducts = doc.data();
-    // console.log("current data: ", cartProducts);
     store.dispatch(setFirebaseCart(doc.data()));
   });
+};
+
+export const deleteProduct = async (document, product) => {
+  const docRef = doc(db, "cart", document);
+  const data = { [product]: deleteField() };
+  await updateDoc(docRef, data);
+};
+
+export const deleteProducts = async (document) => {
+  await setDoc(doc(db, "cart", document), {});
 };
 
 export const createDocument = async (user) => {

@@ -5,7 +5,12 @@ import { logout as logoutHandler } from "./store/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { cartProducts, getProducts, updateProducts } from "../firebase";
+import {
+  cartProducts,
+  deleteProduct,
+  getProducts,
+  updateProducts,
+} from "../firebase";
 
 const Cart = ({
   activeLink,
@@ -24,7 +29,11 @@ const Cart = ({
       prevBasket.filter((product) => product.id !== productId)
     );
   };
-  //user varken firebase için de delete işlemi ayarla
+
+  const handleDeleteFirebase = (productId) => {
+    deleteProduct(user.email, productId);
+  };
+
   const { firebaseCart } = useSelector((state) => state.firebaseCart);
   const totalPrice = user
     ? Object.values(firebaseCart).reduce(
@@ -64,7 +73,11 @@ const Cart = ({
                   <p>{product.price} USD</p>
                   <i
                     className="delete"
-                    onClick={() => handleDelete(product.id)}
+                    onClick={
+                      user
+                        ? () => handleDeleteFirebase(product.id)
+                        : () => handleDelete(product.id)
+                    }
                   >
                     <AiOutlineClose />
                   </i>

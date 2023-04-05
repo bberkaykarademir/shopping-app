@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import Navbar from "./Navbar";
 import "react-toastify/dist/ReactToastify.css";
+import { deleteProducts } from "../firebase";
+import { useSelector } from "react-redux";
 
 const Checkout = ({ activeLink, setActiveLink, handleClick }) => {
   useEffect(() => {
@@ -10,6 +12,7 @@ const Checkout = ({ activeLink, setActiveLink, handleClick }) => {
   const [card, setCard] = useState("");
   const cardNumber = "1111111111111111";
 
+  const { user } = useSelector((state) => state.auth);
   const buy = (e) => {
     e.preventDefault();
     if (card == cardNumber) {
@@ -18,6 +21,7 @@ const Checkout = ({ activeLink, setActiveLink, handleClick }) => {
     setTimeout(() => {
       window.open("/", "_self");
     }, 3000);
+    deleteProducts(user.email);
   };
   return (
     <>
